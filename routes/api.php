@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\UserSettingController;
 use App\Http\Controllers\Debug\DebugController;
 use App\Http\Controllers\Domain\DomainController;
 use App\Http\Controllers\Domain\DomainSettingController;
+use App\Http\Controllers\Gencestor\PedigreeController;
 use App\Http\Controllers\Media\FileController;
 use App\Http\Controllers\Media\DirectoryController;
 use App\Http\Controllers\Media\MediaController;
@@ -133,5 +134,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::patch('/media/rename', [MediaController::class, 'rename']);
         Route::delete('/media', [MediaController::class, 'destroy']);
         Route::patch('/media/repair', [MediaController::class, 'repair']);
+
+        // Gencestor pedigrees
+        Route::delete('/gencestor/pedigrees', [PedigreeController::class, 'destroyMany']);
+        Route::resource('/gencestor/pedigrees', PedigreeController::class)->only(['show', 'index', 'store', 'update', 'destroy']);
+
+        // Gencestor animals
+        // Route::delete('/gencestore/animals', [AnimalController::class, 'destroyMany']);
+        // Route::resource('/gencestore/animals', AnimalController::class)->only(['show', 'index', 'store', 'update', 'destroy']);
     });
 });

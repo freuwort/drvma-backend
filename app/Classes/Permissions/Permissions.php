@@ -41,6 +41,17 @@ class Permissions
      * App permissions:
      */
 
+    // Gencestor
+    public const APP_VIEW_GENCESTORANIMALS = 'app.view.gencestor.animals';
+    public const APP_CREATE_GENCESTORANIMALS = 'app.create.gencestor.animals';
+    public const APP_EDIT_GENCESTORANIMALS = 'app.edit.gencestor.animals';
+    public const APP_DELETE_GENCESTORANIMALS = 'app.delete.gencestor.animals';
+
+    public const APP_VIEW_GENCESTORPEDIGREES = 'app.view.gencestor.pedigrees';
+    public const APP_CREATE_GENCESTORPEDIGREES = 'app.create.gencestor.pedigrees';
+    public const APP_EDIT_GENCESTORPEDIGREES = 'app.edit.gencestor.pedigrees';
+    public const APP_DELETE_GENCESTORPEDIGREES = 'app.delete.gencestor.pedigrees';
+
     // Accounting
     public const APP_VIEW_ACCOUNTINGCONTACTS = 'app.view.accounting.contacts';
     public const APP_CREATE_ACCOUNTINGCONTACTS = 'app.create.accounting.contacts';
