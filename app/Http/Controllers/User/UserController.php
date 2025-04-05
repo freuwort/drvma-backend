@@ -168,9 +168,9 @@ class UserController extends Controller
         $this->authorize('update', $user);
 
         $user->update($request->validated());
-        $user->updateAddress('main', $request->main_address);
-        $user->updateAddress('billing', $request->billing_address);
-        $user->updateAddress('shipping', $request->shipping_address);
+        $user->updateAddress('main_address_id', $request->main_address);
+        $user->updateAddress('billing_address_id', $request->billing_address);
+        $user->updateAddress('shipping_address_id', $request->shipping_address);
 
         return UserResource::make($user->fresh());
     }

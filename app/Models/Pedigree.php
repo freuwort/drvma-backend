@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasAddresses;
 use Illuminate\Database\Eloquent\Model;
 
 class Pedigree extends Model
 {
+    use HasAddresses;
+
     protected $fillable = [
         'kennel',
         'title',

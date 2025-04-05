@@ -6,13 +6,8 @@ use App\Models\Address;
 
 trait HasAddresses
 {
-    public function updateAddress(string $type, array|null $address): bool
+    public function updateAddress(string $selector, array|null $address): bool
     {
-        if (!in_array($type, $this->address_columns)) {
-            return false;
-        }
-
-        $selector = $type.'_address_id';
         $id = $this->{$selector};
 
         // Delete address if null

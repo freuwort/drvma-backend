@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Gencestor;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Pedigree\CreatePedigreeRequest;
 use App\Http\Requests\Pedigree\ImportPedigreesRequest;
-use App\Http\Requests\Pedigree\UpdatePedigreeRequest;
 use App\Http\Resources\Gencestor\PedigreeResource;
+use App\Models\Animal;
 use App\Models\Pedigree;
+use App\Rules\Address;
 use Illuminate\Http\Request;
 
 class PedigreeController extends Controller
@@ -84,14 +84,25 @@ class PedigreeController extends Controller
 
     
     
-    // public function update(UpdatePedigreeRequest $request, Pedigree $pedigree)
-    // {
-    //     $this->authorize('update', $pedigree);
+    public function update(Request $request, Pedigree $pedigree)
+    {
+        $this->authorize('update', $pedigree);
+        
+        $request->validate([
+            'kennel' => ['required', 'string'],
+            'title' => ['required', 'string'],
+            'address' => ['nullable', new Address],
+            'animal_ids' => ['nullable', 'array'],
+            'animal_ids.*' => ['required', 'integer', 'exists:animals,id'],
+        ]);
 
-    //     $pedigree->update($request->validated());
+        $pedigree->update($request->only(['kennel', 'title']));
+        $pedigree->updateAddress('address_id', $request->address);
 
-    //     return PedigreeResource::make($pedigree->fresh());
-    // }
+        Animal::assignMany($request->animal_ids, $pedigree->id);
+
+        return PedigreeResource::make($pedigree->fresh());
+    }
 
     
     
