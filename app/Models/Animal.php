@@ -87,7 +87,7 @@ class Animal extends Model
         return $post;
     }
 
-    public static function assignMany(array $animal_ids, int $pedigree_id)
+    public static function assignMany(array $animal_ids, ?int $pedigree_id)
     {
         return static::whereIn('id', $animal_ids)->update(['pedigree_id' => $pedigree_id]);
     }
